@@ -1,0 +1,47 @@
+<template>
+  <v-snackbar
+    v-model="alert"
+    :color="color"
+    top
+    multi-line
+    outlined
+    timeout="1000"
+  >
+    <v-icon left color="red">{{ icon }}</v-icon>{{ text }}
+  </v-snackbar>
+</template>
+<script>
+import { mapGetters, mapActions } from "vuex";
+export default {
+  name: "alert",
+  computed: {
+    ...mapGetters({
+      status: "alert/status",
+      color: "alert/color",
+      text: "alert/text",
+      icon: "alert/icon",
+    }),
+    alert: {
+      get() {
+        return this.status;
+      },
+      set(value) {
+        this.setAlert({
+          status: value,
+        });
+      },
+    },
+  },
+
+  methods: {
+    ...mapActions({
+      setAlert: "alert/set",
+    }),
+    close() {
+      this.setAlert({
+        status: false,
+      });
+    },
+  },
+};
+</script>
