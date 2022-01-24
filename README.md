@@ -21,7 +21,7 @@ npm run build
 npm run lint
 ```
 
-### 
+### Login as admin for input data
 ```
 email: admin@gmail.com
 password: 1234
