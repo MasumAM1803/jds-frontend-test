@@ -1,5 +1,4 @@
-import citizen from "../assets/data-dummy.js";
-// import axios from "../plugins/axios"
+// import citizen from "../assets/data-dummy.js";
 
 export default {
     namespaced: true,
@@ -45,9 +44,8 @@ export default {
             foto_kk: null,
             textSelection: "",
         },
-        citizens: citizen,
+        citizens: [],
         genders: ["Pria", "Wanita"],
-        // provinces: {},
     },
     getters: {
         editedIndexs: state => state.editedIndexs,
@@ -69,9 +67,6 @@ export default {
         setCitizens: (state, citizens) => {
             state.citizens = citizens
         },
-        // setProvinsi: (state, payload) => {
-        //     state.provinces = payload
-        // },
     },
     actions: {
         setEditedIndex: ({ commit }, editedIndexs) => {
@@ -86,19 +81,5 @@ export default {
         setCitizens: ({ commit }, citizens) => {
             commit('setCitizens', citizens)
         },
-        // getProvinces(context, payload) {
-        //     const config = {
-        //         method: "GET",
-        //         url: payload,
-        //     }
-        //     axios(config)
-        //         .then((response) => {
-        //             console.log(response)
-        //             context.commit('setProvinsi', response)
-        //         })
-        //         .catch((error) => {
-        //             console.log(error)
-        //         })
-        // }
     }
 }

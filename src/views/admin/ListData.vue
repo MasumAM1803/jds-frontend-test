@@ -9,24 +9,20 @@
         <v-card>
           <v-data-table :headers="headers" :items="citizen" :search="search">
             <template v-slot:[`item.foto_ektp`]="{ item }">
-              <img
+              <v-img
                 :src="
-                  item.foto_ektp
-                    ? require('../../assets/image/' + item.foto_ektp.name)
-                    : 'https://dummyimage.com/300'
+                  item.foto_ektp.imageUrl
                 "
-                height="100px"
+                max-width="200px"
                 alt="Foto EKTP"
               />
             </template>
             <template v-slot:[`item.foto_kk`]="{ item }">
-              <img
+              <v-img
                 :src="
-                  item.foto_kk
-                    ? require('../../assets/image/' + item.foto_kk.name)
-                    : 'https://dummyimage.com/300'
+                  item.foto_kk.imageUrl
                 "
-                height="100px"
+                max-width="200px"
                 alt="Foto Kartu Keluarga"
               />
             </template>
@@ -83,7 +79,6 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import "../../assets/data-dummy.js";
 import headers from "../../assets/header-table.js";
 
 export default {
@@ -163,7 +158,7 @@ export default {
       setCitizens: "crud/setCitizens",
     }),
     directLogin() {
-      this.$router.push('/login')
+      this.$router.push("/login");
     },
     initialize() {
       this.citizen = this.citizens;

@@ -222,6 +222,7 @@
               placeholder="Foto EKTP"
               prepend-icon="mdi-camera"
               label="Foto EKTP"
+              @change="onFileEktp"
             ></v-file-input>
           </v-col>
           <v-col cols="12" md="6" sm="6">
@@ -232,6 +233,7 @@
               placeholder="Foto Kartu Keluarga"
               prepend-icon="mdi-camera"
               label="Foto Kartu Keluarga"
+              @change="onFileKK"
             ></v-file-input>
           </v-col>
         </v-row>
@@ -261,6 +263,8 @@ export default {
   data() {
     return {
       enabled: false,
+      imageUrlEktp: '',
+      imageUrlKK: '',
     };
   },
 
@@ -286,7 +290,6 @@ export default {
       genders: "crud/genders",
     }),
     ...mapState(['provinces', 'city', 'district', 'village']),
-
     editedIndex: {
       get() {
         return this.editedIndexs;
@@ -367,6 +370,7 @@ export default {
       this.editedItem.textSelection = "";
       this.enabled = false;
     },
+
     close() {
       this.$emit("closed", false);
       this.$nextTick(() => {
@@ -375,6 +379,7 @@ export default {
         this.clearForm();
       });
     },
+
     pushData() {
       if (this.editedIndex > -1) {
         Object.assign(this.citizens[this.editedIndex], this.editedItem);
@@ -402,6 +407,7 @@ export default {
       }
       this.close();
     },
+
     notifAlert(text) {
       this.setAlert({
         status: true,
@@ -410,6 +416,24 @@ export default {
         icon: "mdi-alert",
       });
     },
+
+    assignData() {
+      this.editedItem.foto_ektp = {
+        name: this.editedItem.foto_ektp.name,
+        size: this.editedItem.foto_ektp.size,
+        imageUrl: this.imageUrlEktp
+      }
+      this.editedItem.foto_kk = {
+        name: this.editedItem.foto_kk.name,
+        size: this.editedItem.foto_kk.size,
+        imageUrl: this.imageUrlKK
+      }
+      this.editedItem.provinsi = this.editedItem.provinsi.name;
+      this.editedItem.kota = this.editedItem.kota.name;
+      this.editedItem.kecamatan = this.editedItem.kecamatan.name;
+      this.editedItem.desa = this.editedItem.desa.name;
+    },
+
     save() {
       if (this.editedItem.nama == "") {
         this.notifAlert("Nama Tidak Boleh Kosong");
@@ -477,20 +501,38 @@ export default {
         this.notifAlert("File foto KK tidak boleh lebih dari 2MB");
         this.$refs.foto_kk.focus();
       } else if (this.editedItem.textSelection != "") {
+        this.assignData()
         this.editedItem.alasan = this.editedItem.textSelection;
-        this.editedItem.provinsi = this.editedItem.provinsi.name;
-        this.editedItem.kota = this.editedItem.kota.name;
-        this.editedItem.kecamatan = this.editedItem.kecamatan.name;
-        this.editedItem.desa = this.editedItem.desa.name;
         this.pushData();
       } else {
-        this.editedItem.provinsi = this.editedItem.provinsi.name
-        this.editedItem.kota = this.editedItem.kota.name;
-        this.editedItem.kecamatan = this.editedItem.kecamatan.name;
-        this.editedItem.desa = this.editedItem.desa.name;
+        this.assignData()
         this.pushData();
       }
     },
+    
+    onFileEktp(file) {
+      if (!file) {
+        return;
+      }
+      const reader = new FileReader();
+
+      reader.onload = e => {
+        this.imageUrlEktp = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+
+    onFileKK(file) {
+      if (!file) {
+        return;
+      }
+      const reader = new FileReader();
+
+      reader.onload = e => {
+        this.imageUrlKK = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
   },
   created: function () {
     this.getProvinces();

@@ -5,11 +5,13 @@ const citizen = [
         no_kk: 3201000000000001,
         foto_ektp: {
             name: "ktp-dummy.jpg",
-            size: 1000000
+            size: 1000000,
+            imageUrl: '../../assets/image/ktp-dummy.jpg'
         },
         foto_kk: {
             name: "kartu-keluarga-dummy.png",
-            size: 1000000
+            size: 1000000,
+            imageUrl: '../../assets/image/kartu-keluarga-dummy.png'
         },
         umur: 99,
         jenis_kelamin: "Laki-laki",
@@ -30,11 +32,13 @@ const citizen = [
         no_kk: 3201000000000002,
         foto_ektp: {
             name: "ktp-dummy.jpg",
-            size: 1000000
+            size: 1000000,
+            imageUrl: '../../assets/image/ktp-dummy.jpg'
         },
         foto_kk: {
             name: "kartu-keluarga-dummy.png",
-            size: 1000000
+            size: 1000000,
+            imageUrl: '../../assets/image/kartu-keluarga-dummy.png'
         },
         umur: 99,
         jenis_kelamin: "Laki-laki",
@@ -55,11 +59,13 @@ const citizen = [
         no_kk: 3201000000000003,
         foto_ektp: {
             name: "ktp-dummy.jpg",
-            size: 1000000
+            size: 1000000,
+            imageUrl: '../../assets/image/ktp-dummy.jpg'
         },
         foto_kk: {
             name: "kartu-keluarga-dummy.png",
-            size: 1000000
+            size: 1000000,
+            imageUrl: '../../assets/image/kartu-keluarga-dummy.png'
         },
         umur: 99,
         jenis_kelamin: "Laki-laki",

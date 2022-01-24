@@ -6,10 +6,17 @@ import auth from './auth'
 import crud from './crud'
 import navbar from './navbar'
 import axios from "../plugins/axios"
+import VuexPersist from "vuex-persist"
+
+const vuexPersist = new VuexPersist({
+    key: 'data warga',
+    Storage: localStorage
+})
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+    plugins: [vuexPersist.plugin],
     modules: {
         alert,
         dialog,

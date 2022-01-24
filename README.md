@@ -1,5 +1,6 @@
 # challenge_jds
 
+
 ## Project setup
 ```
 npm install
@@ -18,6 +19,12 @@ npm run build
 ### Lints and fixes files
 ```
 npm run lint
+```
+
+### 
+```
+email: admin@gmail.com
+password: 1234
 ```
 
 ### Customize configuration
