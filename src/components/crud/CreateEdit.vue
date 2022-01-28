@@ -68,7 +68,7 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="12" sm="12">
-             <v-select
+            <v-select
               ref="provinsi"
               v-model="editedItem.provinsi"
               v-on:change="getCity(editedItem.provinsi.id)"
@@ -263,8 +263,8 @@ export default {
   data() {
     return {
       enabled: false,
-      imageUrlEktp: '',
-      imageUrlKK: '',
+      imageUrlEktp: "",
+      imageUrlKK: "",
     };
   },
 
@@ -289,7 +289,7 @@ export default {
       citizens: "crud/citizens",
       genders: "crud/genders",
     }),
-    ...mapState(['provinces', 'city', 'district', 'village']),
+    ...mapState(["provinces", "city", "district", "village"]),
     editedIndex: {
       get() {
         return this.editedIndexs;
@@ -340,29 +340,29 @@ export default {
 
     getProvinces() {
       const config = {
-        api: 'http://www.emsifa.com/api-wilayah-indonesia/api/provinces.json'
-      }
+        api: "https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json",
+      };
       this.$store.dispatch("getProvinces", config);
     },
 
     getCity(id) {
       const config = {
-        api: `http://www.emsifa.com/api-wilayah-indonesia/api/regencies/${id}.json`
-      }
+        api: `https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${id}.json`,
+      };
       this.$store.dispatch("getCity", config);
     },
 
     getDistrict(id) {
       const config = {
-        api: `http://www.emsifa.com/api-wilayah-indonesia/api/districts/${id}.json`
-      }
+        api: `https://www.emsifa.com/api-wilayah-indonesia/api/districts/${id}.json`,
+      };
       this.$store.dispatch("getDistrict", config);
     },
 
     getVillage(id) {
       const config = {
-        api: `http://www.emsifa.com/api-wilayah-indonesia/api/villages/${id}.json`
-      }
+        api: `https://www.emsifa.com/api-wilayah-indonesia/api/villages/${id}.json`,
+      };
       this.$store.dispatch("getVillage", config);
     },
 
@@ -421,13 +421,13 @@ export default {
       this.editedItem.foto_ektp = {
         name: this.editedItem.foto_ektp.name,
         size: this.editedItem.foto_ektp.size,
-        imageUrl: this.imageUrlEktp
-      }
+        imageUrl: this.imageUrlEktp,
+      };
       this.editedItem.foto_kk = {
         name: this.editedItem.foto_kk.name,
         size: this.editedItem.foto_kk.size,
-        imageUrl: this.imageUrlKK
-      }
+        imageUrl: this.imageUrlKK,
+      };
       this.editedItem.provinsi = this.editedItem.provinsi.name;
       this.editedItem.kota = this.editedItem.kota.name;
       this.editedItem.kecamatan = this.editedItem.kecamatan.name;
@@ -497,26 +497,26 @@ export default {
       } else if (this.editedItem.foto_ektp.size > 2000000) {
         this.notifAlert("File foto EKTP tidak boleh lebih dari 2MB");
         this.$refs.foto_ektp.focus();
-      } else if (this.editedItem.foto_kk.size > 200000) {
+      } else if (this.editedItem.foto_kk.size > 2000000) {
         this.notifAlert("File foto KK tidak boleh lebih dari 2MB");
         this.$refs.foto_kk.focus();
       } else if (this.editedItem.textSelection != "") {
-        this.assignData()
+        this.assignData();
         this.editedItem.alasan = this.editedItem.textSelection;
         this.pushData();
       } else {
-        this.assignData()
+        this.assignData();
         this.pushData();
       }
     },
-    
+
     onFileEktp(file) {
       if (!file) {
         return;
       }
       const reader = new FileReader();
 
-      reader.onload = e => {
+      reader.onload = (e) => {
         this.imageUrlEktp = e.target.result;
       };
       reader.readAsDataURL(file);
@@ -528,11 +528,11 @@ export default {
       }
       const reader = new FileReader();
 
-      reader.onload = e => {
+      reader.onload = (e) => {
         this.imageUrlKK = e.target.result;
       };
       reader.readAsDataURL(file);
-    }
+    },
   },
   created: function () {
     this.getProvinces();

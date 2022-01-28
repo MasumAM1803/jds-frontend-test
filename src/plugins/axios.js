@@ -5,7 +5,7 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
 const instance = axios.create({
-    baseURL: 'http://www.emsifa.com/api-wilayah-indonesia/api'
+    baseURL: 'https://www.emsifa.com/api-wilayah-indonesia/api'
 })
 
 export default instance
